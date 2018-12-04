@@ -505,7 +505,7 @@ function updatePositions() {
   var items = document.getElementsByClassName('mover');
   var scroll = (document.body.scrollTop / 1250);
   for (var i = 0; i < items.length; i++) {    
-    var phase = Math.sin((scrollTop / 1250) + (i % 5));
+    var phase = Math.sin((scrollTop.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -527,10 +527,12 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
 
+  var winHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  var totalPizzas = Math.floor(winHeight / s) * cols;
+  var elem;
 
   // 从200改到50 降低fps
-  for (var i = 0, elem; i < 50; i++) {
-     
+  for (var i = 0 ; i < totalPizzas; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
